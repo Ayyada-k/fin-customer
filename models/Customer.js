@@ -1,31 +1,27 @@
-// models/Customer.js
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const customerSchema = new mongoose.Schema({
-  name: { 
-    type: String, 
+  name: {
+    type: String,
+    required: true
+  },
+  dateOfBirth: {
+    type: Date,
+    required: true
+  },
+  memberNumber: {
+    type: Number,
     required: true,
-    trim: true
+    unique: true
   },
-  dateOfBirth: { 
-    type: Date, 
-    required: true 
-  },
-  memberNumber: { 
-    type: Number, 
-    required: true, 
-    unique: true,
-    min: 1
-  },
-  interests: { 
-    type: String, 
-    required: true,
-    trim: true
+  interests: {
+    type: String,
+    required: true
   }
 }, {
-  timestamps: true
+  timestamps: true // This will add createdAt and updatedAt fields automatically
 });
 
-const Customer = mongoose.models.Customer || mongoose.model('Customer', customerSchema);
+const Customer = mongoose.models.customer || mongoose.model("customer", customerSchema);
 
 export default Customer;
